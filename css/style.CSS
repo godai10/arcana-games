@@ -1,0 +1,501 @@
+/* =====================================================
+   IMPORTAÇÃO DE FONTES E RESET
+=====================================================*/
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Roboto:wght@400;700&display=swap');
+
+/* Reset global para garantir consistência entre navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    transition: .25s ease;
+    font-family: "Roboto", sans-serif;
+}
+
+body {
+    background: radial-gradient(circle at top, #0e0d2a, #07061b 70%);
+    color: #fff;
+    overflow-x: hidden; /* Evita scroll horizontal indesejado */
+}
+
+/* Variáveis CSS para facilitar a manutenção da paleta de cores */
+:root {
+    --blue: #4965ff;      
+    --cyan: #4cd9ff;      
+    --deep-dark: #0e0d2a; 
+    --purple: #6f3bff;    
+    --glass-bg: rgba(255, 255, 255, 0.06);
+    --glass-border: rgba(255, 255, 255, 0.12);
+}
+
+/* Força a fonte Cinzel em títulos e elementos de destaque */
+h1, h2, h3, .logo, .navbar a, .btn, .price, .neon-text {
+    font-family: 'Cinzel', serif !important;
+}
+
+/* =====================================================
+   HEADER E NAVEGAÇÃO (Glassmorphism)
+=====================================================*/
+header {
+    width: 100%;
+    background: rgba(10, 10, 25, 0.45);
+    backdrop-filter: blur(18px); /* Efeito de vidro fosco */
+    border-bottom: 1px solid var(--glass-border);
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    /* Mantém o header fixo no topo durante a rolagem */
+    position: sticky;
+    top: 0;
+    box-shadow: 0 0 22px var(--blue);
+    z-index: 2000; 
+}
+
+.logo {
+    background: linear-gradient(135deg, #000, #13132e);
+    padding: 8px 20px;
+    border-radius: 14px;
+    box-shadow: 0 0 20px var(--blue);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    height: 90px;
+    width: 200px;
+    object-fit: contain; /* Garante que a imagem não distorça */
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Efeitos visuais de Hover na Logo */
+.logo:hover {
+    box-shadow: 0 0 35px var(--cyan);
+    border-color: var(--cyan);
+}
+
+.logo-img:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 8px var(--cyan));
+}
+
+/* Navbar */
+nav ul {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+}
+
+nav a {
+    color: #e8ecff;
+    font-size: 1.4rem;
+    font-weight: bold;
+    position: relative;
+}
+
+nav a:hover {
+    color: var(--cyan);
+}
+
+/* Animação da linha inferior do link (cresce de 0 a 100%) */
+nav a::after {
+    content: "";
+    width: 0%;
+    height: 2px;
+    background: var(--cyan);
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    transition: .3s;
+    box-shadow: 0 0 6px var(--cyan);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* =====================================================
+   AÇÕES DO HEADER (Busca + Login + Carrinho)
+=====================================================*/
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.search-box {
+    background: var(--glass-bg);
+    padding: 7px 14px;
+    display: flex;
+    gap: 8px;
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(20px);
+}
+
+.search-box input {
+    border: none;
+    background: transparent;
+    color: #fff;
+}
+
+.search-box button {
+    background: var(--blue);
+    border: none;
+    padding: 7px 12px;
+    border-radius: 10px;
+}
+
+.search-box button:hover {
+    background: var(--cyan);
+}
+
+.btn-login {
+    border: 2px solid var(--cyan);
+    background: transparent;
+    padding: 8px 18px;
+    border-radius: 10px;
+    font-weight: bold;
+    color: var(--cyan);
+}
+
+.btn-login:hover {
+    background: var(--cyan);
+    color: #031423;
+    box-shadow: 0 0 15px var(--cyan);
+}
+
+/* Badge de notificação do carrinho */
+.cart-btn-wrapper {
+    position: relative;
+    display: inline-flex;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #ff0000;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 5px #ff0000;
+    border: 1px solid #fff;
+    z-index: 10;
+}
+
+/* =====================================================
+   SEÇÃO HOME E BOTÕES GERAIS
+=====================================================*/
+.home-container {
+    padding: 100px 60px;
+    background: linear-gradient(#0e0d2a, #090827);
+    text-align: center;
+}
+
+.home-container h2 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+}
+
+.home-container span {
+    color: var(--blue);
+    text-shadow: 0 0 15px var(--blue);
+}
+
+.home-container h3 {
+    font-size: 1.4rem;
+    opacity: .8;
+}
+
+.btn {
+    display: inline-block;
+    background: linear-gradient(90deg, var(--blue), var(--cyan));
+    padding: 14px 26px;
+    border-radius: 12px;
+    font-weight: bold;
+    margin-top: 25px;
+    box-shadow: 0 0 15px var(--blue);
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px var(--cyan);
+}
+
+/* Botões de navegação de seção (ex: PS Física, Xbox, etc) */
+.navegacao-secoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.navegacao-secoes .btn {
+    font-size: 1rem;
+    color: #fff;
+    box-shadow: 0 0 12px var(--blue);
+    margin-top: 0; /* Resetando margem específica */
+}
+
+.navegacao-secoes .btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px var(--cyan);
+}
+
+/* =====================================================
+   CARROSSEL / SLIDER
+=====================================================*/
+.banner-slider {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0;
+    position: relative;
+}
+
+.slider-container {
+    width: 100%;
+    height: 450px;
+    overflow: hidden; /* Oculta os slides que estão fora da área visível */
+    border-radius: 20px;
+    position: relative;
+    box-shadow: 0 0 25px var(--blue);
+    border: 1px solid var(--glass-border);
+    background: #000;
+}
+
+.slides {
+    display: flex; /* Alinha os slides lado a lado */
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out; /* Suaviza a transição do slider */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.slide {
+    min-width: 100%; /* Garante que cada slide ocupe 100% do container */
+    width: 100%;
+    flex: 0 0 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Controles do Slider */
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    padding: 16px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+    z-index: 100;
+    transition: 0.3s;
+}
+
+.arrow:hover {
+    background: var(--blue);
+    box-shadow: 0 0 15px var(--cyan);
+    border-color: var(--cyan);
+}
+
+.arrow.left { left: 20px; }
+.arrow.right { right: 20px; }
+
+.dots {
+    margin-top: 14px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #666;
+}
+
+.dot.active {
+    background: var(--cyan);
+    box-shadow: 0 0 12px var(--cyan);
+}
+
+/* =====================================================
+   GRID DE PRODUTOS (Cards)
+=====================================================*/
+.cards-container {
+    padding: 70px 50px;
+    display: grid;
+    gap: 40px;
+    /* Cria colunas automaticamente dependendo do tamanho da tela (Min 260px) */
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(18px);
+    border-radius: 14px;
+    padding: 22px;
+    width: 280px; /* Largura base, mas o grid controla o layout */
+    text-align: center;
+    box-shadow: 0 0 18px #0a0a18;
+    margin: 0 auto; /* Centraliza no grid se sobrar espaço */
+    position: relative; /* Para posicionar a etiqueta */
+}
+
+.card:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 25px var(--blue);
+}
+
+.etiqueta {
+    background: red;
+    padding: 6px 10px;
+    border-radius: 8px;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.card img {
+    width: 200px;
+    margin-bottom: 20px;
+}
+
+.price {
+    color: var(--cyan);
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+.card button {
+    background: linear-gradient(90deg, var(--blue), var(--cyan));
+    border-radius: 10px;
+    padding: 10px 18px;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+.card button:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 15px var(--cyan);
+}
+
+/* =====================================================
+   RODAPÉ
+=====================================================*/
+.universal-footer {
+    background: #050510;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 50px 20px;
+    margin-top: 80px;
+    color: #ccc;
+    font-family: 'Roboto', sans-serif;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+}
+
+.footer-logo img {
+    height: 60px;
+    filter: drop-shadow(0 0 10px #4965ff);
+    margin-bottom: 10px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-links a {
+    color: #4cd9ff;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+    text-shadow: 0 0 8px #4cd9ff;
+}
+
+.footer-bottom {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px;
+    width: 100%;
+    opacity: 0.7;
+}
+
+/* =====================================================
+   MEDIA QUERIES (Responsividade)
+=====================================================*/
+@media (max-width: 850px) {
+    header {
+        flex-wrap: wrap;
+        gap: 14px;
+        padding: 20px;
+        justify-content: center;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        gap: 18px;
+        justify-content: center;
+    }
+
+    .home-container {
+        padding: 60px 20px;
+    }
+    
+    .header-actions {
+        margin-top: 10px;
+    }
+}
